@@ -3,13 +3,13 @@ Official Implementation of "PMP: Learning to Physically Interact with Environmen
 # Status
 
 ## Released
-- [O] Assets
-    - [O] Deepmimic-MPL Humanoid
-    - [O] Objects for interaction
+- [x] Assets
+    - [x] Deepmimic-MPL Humanoid
+    - [x] Objects for interaction
     - [ ] Retargeted motion data (check for the license)
 
 - [ ] Simulation Configuration Files
-    - [O] `.yaml` files for whole-body and hand-only gyms
+    - [x] `.yaml` files for whole-body and hand-only gyms
     - [ ] documentations about details
 
 ## Todo
