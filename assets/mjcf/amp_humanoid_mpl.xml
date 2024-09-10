@@ -1,0 +1,863 @@
+<mujoco model="humanoid_mpl">
+  <compiler meshdir="MPL/mesh/" texturedir="MPL/texture/"/>
+  <statistic extent="2" center="0 0 1"/>
+  
+  <option timestep="0.00555"/>
+  
+  <default>
+    <motor ctrlrange="-1 1" ctrllimited="true"/>
+    <default class="body">
+      <geom type="capsule" condim="1" friction="1.0 0.05 0.05" solimp=".9 .99 .003" solref=".015 1"/>
+      <joint type="hinge" damping="0.1" stiffness="5" armature=".007" limited="true" solimplimit="0 .99 .01"/>
+      <site size=".04" group="3"/>
+      <default class="force-torque">
+        <site type="box" size=".01 .01 .02" rgba="1 0 0 1" />
+      </default>
+      <default class="touch">
+        <site type="capsule" rgba="0 0 1 .3"/>
+      </default>
+    </default>
+
+    <!-- from MPL -->
+    <default class="MPL"> 
+      <!-- <geom material="MatMesh" contype="1" conaffinity="1" condim="4" margin="0.001"/> -->
+      <geom material="MatMesh" contype="1" conaffinity="1" condim="4" />
+      <joint limited="true" damping="0.2" armature=".01"/>
+      <site material="MatTouch" type="ellipsoid" group="1"/>
+      <position ctrllimited="true" kp="10"/>
+    </default>
+  </default>
+
+  <!-- from MPL -->
+  <asset>
+    <mesh name="right_index0" 	file="index0.STL"/>
+    <mesh name="right_index1" 	file="index1.STL"/>
+    <mesh name="right_index2" 	file="index2.STL"/>
+    <mesh name="right_index3" 	file="index3.STL"/>
+    <mesh name="right_middle0" 	file="middle0.STL"/>
+    <mesh name="right_middle1" 	file="middle1.STL"/>
+    <mesh name="right_middle2" 	file="middle2.STL"/>
+    <mesh name="right_middle3" 	file="middle3.STL"/>
+    <mesh name="right_palm" 		file="palm.STL"/>
+    <mesh name="right_pinky0" 	file="pinky0.STL"/>
+    <mesh name="right_pinky1" 	file="pinky1.STL"/>
+    <mesh name="right_pinky2" 	file="pinky2.STL"/>
+    <mesh name="right_pinky3" 	file="pinky3.STL"/>
+    <mesh name="right_ring0" 		file="ring0.STL"/>
+    <mesh name="right_ring1" 		file="ring1.STL"/>
+    <mesh name="right_ring2" 		file="ring2.STL"/>
+    <mesh name="right_ring3" 		file="ring3.STL"/>
+    <mesh name="right_thumb0" 	file="thumb0.STL"/>
+    <mesh name="right_thumb1" 	file="thumb1.STL"/>
+    <mesh name="right_thumb2" 	file="thumb2.STL"/>
+    <mesh name="right_thumb3" 	file="thumb3.STL"/>
+
+    <mesh name="left_index0"     file="index0_left.stl"/>
+    <mesh name="left_index1"     file="index1_left.stl"/>
+    <mesh name="left_index2"     file="index2_left.stl"/>
+    <mesh name="left_index3"     file="index3_left.stl"/>
+    <mesh name="left_middle0"    file="middle0_left.stl"/>
+    <mesh name="left_middle1"    file="middle1_left.stl"/>
+    <mesh name="left_middle2"    file="middle2_left.stl"/>
+    <mesh name="left_middle3"    file="middle3_left.stl"/>
+    <mesh name="left_palm"       file="palm_left.stl"/>
+    <mesh name="left_pinky0"     file="pinky0_left.stl"/>
+    <mesh name="left_pinky1"     file="pinky1_left.stl"/>
+    <mesh name="left_pinky2"     file="pinky2_left.stl"/>
+    <mesh name="left_pinky3"     file="pinky3_left.stl"/>
+    <mesh name="left_ring0"      file="ring0_left.stl"/>
+    <mesh name="left_ring1"      file="ring1_left.stl"/>
+    <mesh name="left_ring2"      file="ring2_left.stl"/>
+    <mesh name="left_ring3"      file="ring3_left.stl"/>
+    <mesh name="left_thumb0"     file="thumb0_left.stl"/>
+    <mesh name="left_thumb1"     file="thumb1_left.stl"/>
+    <mesh name="left_thumb2"     file="thumb2_left.stl"/>
+    <mesh name="left_thumb3"     file="thumb3_left.stl"/>
+
+    <material name="MatTouch" rgba=".3 .9 .3 .3"/>
+    <material name="MatIMU" rgba=".1 .1 .9 1"/>
+    <!-- <material name="MatMesh" texture="skin"/> -->
+    <material name="MatMesh"/>
+  </asset>
+  
+  <!-- from MPL -->
+  <!-- We need more than this in Isaac Gym  -->
+  <contact>
+    <exclude body1="right_lower_arm" body2="right_thumb0"/>
+    <exclude body1="right_lower_arm" body2="right_palm"/>
+    <exclude body1="right_palm" body2="right_thumb1"/>
+    <exclude body1="right_palm" body2="right_index1"/>
+    <exclude body1="right_palm" body2="right_middle1"/>
+    <exclude body1="right_palm" body2="right_ring1"/>
+    <exclude body1="right_palm" body2="right_pinky1"/>
+
+    <exclude body1="left_lower_arm" body2="left_thumb0"/>
+    <exclude body1="left_lower_arm" body2="left_palm"/>
+    <exclude body1="left_palm" body2="left_thumb1"/>
+    <exclude body1="left_palm" body2="left_index1"/>
+    <exclude body1="left_palm" body2="left_middle1"/>
+    <exclude body1="left_palm" body2="left_ring1"/>
+    <exclude body1="left_palm" body2="left_pinky1"/>
+
+    <exclude body1="right_palm" body2="right_thumb0"/>
+    <exclude body1="right_palm" body2="right_index0"/>
+    <exclude body1="right_palm" body2="right_middle0"/>
+    <exclude body1="right_palm" body2="right_ring0"/>
+    <exclude body1="right_palm" body2="right_pinky0"/>
+    <exclude body1="right_thumb0" body2="right_thumb1"/>
+    <exclude body1="right_thumb1" body2="right_thumb2"/>
+    <exclude body1="right_thumb2" body2="right_thumb3"/>
+    <exclude body1="right_index0" body2="right_index1"/>
+    <exclude body1="right_index1" body2="right_index2"/>
+    <exclude body1="right_index2" body2="right_index3"/>
+    <exclude body1="right_middle0" body2="right_middle1"/>
+    <exclude body1="right_middle1" body2="right_middle2"/>
+    <exclude body1="right_middle2" body2="right_middle3"/>
+    <exclude body1="right_ring0" body2="right_ring1"/>
+    <exclude body1="right_ring1" body2="right_ring2"/>
+    <exclude body1="right_ring2" body2="right_ring3"/>
+    <exclude body1="right_pinky0" body2="right_pinky1"/>
+    <exclude body1="right_pinky1" body2="right_pinky2"/>
+    <exclude body1="right_pinky2" body2="right_pinky3"/>
+
+    <exclude body1="left_palm" body2="left_thumb0"/>
+    <exclude body1="left_palm" body2="left_index0"/>
+    <exclude body1="left_palm" body2="left_middle0"/>
+    <exclude body1="left_palm" body2="left_ring0"/>
+    <exclude body1="left_palm" body2="left_pinky0"/>
+    <exclude body1="left_thumb0" body2="left_thumb1"/>
+    <exclude body1="left_thumb1" body2="left_thumb2"/>
+    <exclude body1="left_thumb2" body2="left_thumb3"/>
+    <exclude body1="left_index0" body2="left_index1"/>
+    <exclude body1="left_index1" body2="left_index2"/>
+    <exclude body1="left_index2" body2="left_index3"/>
+    <exclude body1="left_middle0" body2="left_middle1"/>
+    <exclude body1="left_middle1" body2="left_middle2"/>
+    <exclude body1="left_middle2" body2="left_middle3"/>
+    <exclude body1="left_ring0" body2="left_ring1"/>
+    <exclude body1="left_ring1" body2="left_ring2"/>
+    <exclude body1="left_ring2" body2="left_ring3"/>
+    <exclude body1="left_pinky0" body2="left_pinky1"/>
+    <exclude body1="left_pinky1" body2="left_pinky2"/>
+    <exclude body1="left_pinky2" body2="left_pinky3"/>
+  </contact>
+
+  <worldbody>
+    <!-- <geom name="floor" type="plane" conaffinity="1" size="100 100 .2" material="grid"/> -->
+    <!-- <body name="mocap" mocap="true" pos="0 -0.35 0.2" axisangle="0 0 1 3.141592">
+      <geom type="box" group="1" size="0.02 0.02 0.02" contype="0" conaffinity="0" rgba=".9 .5 .5 1"/>
+    </body> -->
+
+
+    <body name="pelvis" pos="0 0 1" childclass="body">
+      <freejoint name="root"/>
+      <site name="root" class="force-torque"/>
+      <geom name="pelvis" type="sphere" pos="0 0 0.07" size=".09" density="2226"/>
+      <geom name="upper_waist" type="sphere" pos="0 0 0.205" size="0.07" density="2226"/>
+      <site name="pelvis" class="touch" type="sphere" pos="0 0 0.07" size="0.091"/>
+      <site name="upper_waist" class="touch" type="sphere" pos="0 0 0.205" size="0.071"/>
+
+      <body name="torso" pos="0 0 0.236151">
+        <light name="top" pos="0 0 2" mode="trackcom"/>
+        <camera name="back" pos="-3 0 1" xyaxes="0 -1 0 1 0 2" mode="trackcom"/>
+        <camera name="side" pos="0 -3 1" xyaxes="1 0 0 0 1 2" mode="trackcom"/>
+        <joint name="abdomen_x" pos="0 0 0" axis="1 0 0" range="-60 60" stiffness="600" damping="60" armature=".025"/>
+        <joint name="abdomen_y" pos="0 0 0" axis="0 1 0" range="-60 90" stiffness="600" damping="60" armature=".025"/>
+        <joint name="abdomen_z" pos="0 0 0" axis="0 0 1" range="-50 50" stiffness="600" damping="60" armature=".025"/>
+        <geom name="torso" type="sphere" pos="0 0 0.12" size="0.11" density="1794"/>
+        <site name="torso" class="touch" type="sphere" pos="0 0 0.12" size="0.111"/>
+
+        <geom name="right_clavicle" fromto="-0.0060125 -0.0457775 0.2287955 -0.016835 -0.128177 0.2376182" size=".045" density="1100"/>
+        <geom name="left_clavicle" fromto="-0.0060125 0.0457775 0.2287955 -0.016835 0.128177 0.2376182" size=".045" density="1100"/>
+
+        <body name="head" pos="0 0 0.223894">
+          <joint name="neck_x" axis="1 0 0" range="-50 50" stiffness="50" damping="5" armature=".017"/>
+          <joint name="neck_y" axis="0 1 0" range="-40 60" stiffness="50" damping="5" armature=".017"/>
+          <joint name="neck_z" axis="0 0 1" range="-45 45" stiffness="50" damping="5" armature=".017"/>
+          <!-- <geom name="head" type="sphere" pos="0 0 0.175" size="0.095" density="1081"/>
+          <site name="head" class="touch" pos="0 0 0.175" type="sphere" size="0.103"/> -->
+          <geom name="head" type="cylinder" fromto="-0.045 0 0.175 0.045 0 0.175" size="0.085" density="1081"/>
+          <site name="head" class="touch" fromto="-0.055 0 0.175 0.050 0 0.175" type="cylinder" size="0.093"/>
+          <camera name="egocentric" pos=".103 0 0.175" xyaxes="0 -1 0 .1 0 1" fovy="80"/>
+        </body>
+
+        <body name="right_upper_arm" pos="-0.02405 -0.18311 0.24350">
+          <joint name="right_shoulder_x" axis="1 0 0" range="-180 45" stiffness="200" damping="20" armature=".02"/>
+          <joint name="right_shoulder_y" axis="0 1 0" range="-180 60" stiffness="200" damping="20" armature=".02"/>
+          <joint name="right_shoulder_z" axis="0 0 1"  range="-90 90" stiffness="200" damping="20" armature=".02"/>
+          <geom name="right_upper_arm" fromto="0 0 -0.05 0 0 -0.23" size=".045" density="982"/>
+          <site name="right_upper_arm" class="touch" pos="0 0 -0.14" size="0.046 0.1" zaxis="0 0 1"/>
+
+          <body name="right_lower_arm" pos="0 0 -0.274788">
+            <joint name="right_elbow" axis="0 1 0" range="-160 0" stiffness="150" damping="15" armature=".015"/>
+            <geom name="right_lower_arm" fromto="0 0 -0.0525 0 0 -0.1875" size="0.04" density="1056"/>
+            <site name="right_lower_arm" class="touch" pos="0 0 -0.12" size="0.041 0.0685" zaxis="0 1 0"/>
+
+            <!-- ======= right_palm  ======= -->
+            <body childclass="MPL" name="right_palm" pos="0.0 0 -0.24" axisangle="1 0 0 90">
+              <inertial pos="-0.0217876 -0.0376147 0.00276997" quat="-0.146373 0.723094 0.0985561 0.66783" mass="0.119867" diaginertia="0.000123088 0.000100082 6.89467e-005" />
+              <!-- <joint name="right_wrist_FLEX" damping="0.4" type="hinge" pos="0 0 0" axis="1 0 0" range="-60 60"/> -->
+              <joint name="right_wrist_FLEX" damping="0.4" type="hinge" pos="0 0 0" axis="1 0 0" range="-90 90"/>
+              <joint name="right_wrist_PRO" type="hinge" damping="0.4" pos="0 0 0" axis="0 1 0" range="-90 90"/>
+              <joint name="right_wrist_UDEV" damping="0.4" type="hinge" pos="0 0 0" axis="0 0 1" range="-45 15"/>
+              <!-- <joint name="right_wrist_UDEV" damping="0.4" type="hinge" pos="0 0 0" axis="0 0 -1" range="-15 45"/> -->
+              <geom name="right_palm" type="mesh" pos="0.022 0 0" mesh="right_palm"/>
+              <site name="right_palm_right_thumb" pos="-0.0052 -0.0438 -0.0182" size=".017 .03 .01"/>
+              <site name="right_palm_right_pinky" pos="-0.0358 -0.0401 -0.0183" size=".017 .03 .01"/>
+              <site name="right_palm_side" pos="-0.0604 -0.0329 -0.0048" size=".01 .03 .015"/>
+              <site name="right_palm_back" pos="-0.0246 -0.0446 0.018" size=".03 .035 .015"/>
+                <!-- ======= right_thumb ======= -->
+                <body name="right_thumb0" pos="0.03035752 -0.0206978 -0.010093" quat="0.990237 0.0412644 -0.0209178 -0.13149">
+                    <inertial pos="0.00863339 -0.000156884 -0.000945846" quat="0.408795 0.551643 0.541079 0.485602" mass="0.00336696" diaginertia="4.50769e-007 4.48758e-007 2.35017e-007" />
+                    <!-- <joint name="right_thumb_ABD" type="hinge" pos="0 0 0" axis="0 1 0" range="0 120"/> -->
+                    <joint name="right_thumb_ABD" type="hinge" pos="0 0 0" axis="0 1 0" range="-30 120"/>
+                    <geom name="right_thumb0" type="mesh" mesh="right_thumb0"/>
+                    <body name="right_thumb1" pos="0.0209172 -0.00084 0.0014476">
+                        <inertial pos="0.019024 0.000361131 -0.000186763" quat="0.5208 0.469572 0.484571 0.522934" mass="0.00596213" diaginertia="9.88001e-007 9.45125e-007 5.32989e-007" />
+                        <joint name="right_thumb_MCP" type="hinge" pos="0 0 0" axis="0 0 -1" range="0 60"/>
+                        <geom name="right_thumb1" type="mesh" mesh="right_thumb1"/>
+                        <site name="right_thumb_proximal" pos="0.0173 -0.008 0.0009" size=".015 .0075 .01"/>
+                        <body name="right_thumb2" pos="0.0335 0 -0.0007426">
+                            <inertial pos="0.0188965 0.000375725 0.00065381" quat="0.502274 0.484638 0.475673 0.535333" mass="0.00599792" diaginertia="9.96692e-007 9.64948e-007 5.14416e-007" />
+                            <joint name="right_thumb_PIP" type="hinge" pos="0 0 0" axis="0 0 -1" range="0 60"/>
+                            <geom name="right_thumb2" type="mesh" mesh="right_thumb2"/>
+                            <site name="right_thumb_medial" pos="0.0182 -0.008 0.0015" size=".015 .0075 .01"/>
+                            <body name="right_thumb3" pos="0.0335 0 0.0010854">
+                              <inertial pos="0.0188965 0.000375725 0.00065381" quat="0.502274 0.484638 0.475673 0.535333" mass="0.00599792" diaginertia="9.96692e-007 9.64948e-007 5.14416e-007" />
+                                <joint name="right_thumb_DIP" type="hinge" pos="0 0 0" axis="0 0 -1" range="-47 73"/>
+                                <geom name="right_thumb3" type="mesh" mesh="right_thumb3"/>
+                                <site name="right_thumb_distal" pos="0.0156 -0.007 0.0003" size=".015 .0075 .01" axisangle="0 0 1 11.5"/>
+                                <!-- <site class="IMU" name="right_thumb_IMU" pos="0.0099 -0.00052 0" quat=".5 .5 .5 .5" size=".003 .003 .003"/> -->
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+                <!-- ======= right_index ======= -->
+                <body name="right_index0" pos="0.03186485 -0.0658 0.00101221" quat="0.996195 0 0.0871557 0">
+                  <inertial pos="-0.000142572 -0.00548494 0.000206145" quat="0.699132 0.714861 -0.000723869 0.013694" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+                  <joint name="right_index_ABD" type="hinge" pos="0 0 0" axis="0 0 1" range="0 20"/>
+                  <geom name="right_index0" type="mesh" mesh="right_index0"/>
+                  <body name="right_index1" pos="6.26e-005 -0.018 0">
+                      <inertial pos="0.000406487 -0.0213125 0.000655609" quat="0.698452 0.715642 -0.00415384 0.0023049" mass="0.00478235" diaginertia="8.18599e-007 7.95693e-007 3.06254e-007" />
+                      <joint name="right_index_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                      <geom name="right_index1" type="mesh" mesh="right_index1"/>
+                      <site name="right_index_proximal" pos="0 -0.0235 -0.007" size=".009 .015 .0075"/>
+                      <body name="right_index2" pos="0.001086 -0.0435 0.0005">
+                          <inertial pos="-0.000841462 -0.012689 0.000572665" quat="0.734882 0.677481 -0.028511 0.0124827" mass="0.00344764" diaginertia="3.63962e-007 3.59059e-007 1.05304e-007" />
+                          <joint name="right_index_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                          <geom name="right_index2" type="mesh" mesh="right_index2"/>
+                          <site name="right_index_medial" pos="0 -0.009 -0.0047" size=".0075 .01 .006"/>
+                          <body name="right_index3" pos="-0.000635 -0.0245 0">
+                              <inertial pos="4.32004e-005 -0.0125318 0.000903476" quat="0.516251 0.4829 -0.483241 0.516498" mass="0.00274415" diaginertia="1.19635e-007 1.09202e-007 7.77873e-008" />
+                              <joint name="right_index_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                              <geom name="right_index3" type="mesh" mesh="right_index3"/>
+                              <site name="right_index_distal" pos="0 -0.0132 -0.0038" size=".0075 .01 .006"/>
+                              <!-- <site class="IMU" name="right_index_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                          </body>
+                      </body>
+                  </body>
+              </body>
+
+              <!-- ======= right_middle ======= -->
+              <body name="right_middle0" pos="0.010814 -0.0779014 0.00544608" quat="-3.14 0.0436194 0 0">
+                <inertial pos="-0.000142567 -0.00548493 0.000206162" quat="0.699131 0.714862 -0.000723874 0.013694" mass="0.00295579" diaginertia="4.22461e-007 4.02281e-007 1.93868e-007" />
+                <!--<joint name="right_middle0" type="hinge" pos="0 0 0" range="-0.345 0" axis="0 0 -1" />-->
+                <geom name="right_middle0" type="mesh" mesh="right_middle0"/>
+                <body name="right_middle1" pos="6.26e-005 -0.018 0">
+                    <inertial pos="0.000406411 -0.0213125 0.00065565" quat="0.698451 0.715642 -0.00415503 0.00230486" mass="0.00478229" diaginertia="8.18595e-007 7.9569e-007 3.06253e-007" />
+                    <joint name="right_middle_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="right_middle1" type="mesh" mesh="right_middle1"/>
+                    <site name="right_middle_proximal" pos="0 -0.025 -0.007" size=".009 .015 .0075"/>
+                    <body name="right_middle2" pos="0.001086 -0.0435 0.0005">
+                        <inertial pos="-0.000841444 -0.012689 0.00057266" quat="0.734883 0.677482 -0.0284727 0.0124412" mass="0.00344765" diaginertia="3.63962e-007 3.5906e-007 1.05304e-007" />
+                        <joint name="right_middle_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="right_middle2" type="mesh" mesh="right_middle2"/>
+                        <site name="right_middle_medial" pos="0 -0.0146 -0.0047" size=".0075 .01 .006"/>
+                        <body name="right_middle3" pos="-0.000635 -0.0245 0">
+                            <inertial pos="4.31236e-005 -0.0125318 0.000903446" quat="0.516263 0.482913 -0.483228 0.516487" mass="0.00274417" diaginertia="1.19635e-007 1.09202e-007 7.77884e-008" />
+                            <joint name="right_middle_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="right_middle3" type="mesh" mesh="right_middle3"/>
+                            <site name="right_middle_distal" pos="0 -0.0129 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="right_middle_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/>  -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+
+              <!-- ======= right_ring ======= -->
+              <body name="right_ring0" pos="-0.0134928 -0.0666999 0.00151221" quat="0.996195 0 -0.0871557 0">
+                <inertial pos="-0.000142559 -0.00548494 0.000206147" quat="0.699132 0.714861 -0.000720946 0.013691" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+                <joint name="right_ring_ABD" type="hinge" pos="0 0 0" axis="0 0 -1" range="0 20"/>
+                <geom name="right_ring0" type="mesh" mesh="right_ring0"/>
+                <body name="right_ring1" pos="6.26e-005 -0.018 0">
+                    <inertial pos="0.000406447 -0.0213125 0.00065563" quat="0.698451 0.715642 -0.00415675 0.00230715" mass="0.00478232" diaginertia="8.18597e-007 7.95692e-007 3.06254e-007" />
+                    <joint name="right_ring_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="right_ring1" type="mesh" mesh="right_ring1"/>
+                    <site name="right_ring_proximal" pos="0 -0.0259 -0.007" size=".009 .015 .0075"/>
+                    <body name="right_ring2" pos="0.001086 -0.0435 0.0005">
+                        <inertial pos="-0.000841518 -0.012689 0.000572674" quat="0.73488 0.677478 -0.0285773 0.0125557" mass="0.00344767" diaginertia="3.63963e-007 3.59061e-007 1.05305e-007" />
+                        <joint name="right_ring_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="right_ring2" type="mesh" mesh="right_ring2"/>
+                        <site name="right_ring_medial" pos="0 -0.0137 -0.0047" size=".0075 .01 .006"/>
+                        <body name="right_ring3" pos="-0.000635 -0.0245 0">
+                            <inertial pos="4.31973e-005 -0.0125318 0.000903457" quat="0.516255 0.482902 -0.483238 0.516495" mass="0.00274416" diaginertia="1.19635e-007 1.09202e-007 7.77877e-008" />
+                            <joint name="right_ring_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="right_ring3" type="mesh" mesh="right_ring3"/>
+                            <site name="right_ring_distal" pos="0 -0.0117 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="right_ring_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+
+              <!-- ======= right_little ======= -->
+              <body name="right_pinky0" pos="-0.0342459 -0.0554001 -0.00563858" quat="0.996195 0 -0.0871557 0">
+                <inertial pos="-0.000142559 -0.00538484 0.000206147" quat="0.699132 0.714861 -0.000721037 0.0136911" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+                <joint name="right_pinky_ABD" type="hinge" pos="0 0 0" axis="0 0 -1" range="0 20"/>
+                <geom name="right_pinky0" type="mesh" mesh="right_pinky0"/>
+                <body name="right_pinky1" pos="6.26e-005 -0.0178999 0">
+                    <inertial pos="0.000458624 -0.0160478 0.000924735" quat="0.685529 0.72723 0.021252 -0.0270914" mass="0.0034099" diaginertia="4.03391e-007 3.84061e-007 2.19866e-007" />
+                    <joint name="right_pinky_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="right_pinky1" type="mesh" mesh="right_pinky1"/>
+                    <site name="right_pinky_proximal" pos="0 -0.021 -0.0066" size=".009 .013 .0075"/>
+                    <body name="right_pinky2" pos="0.000578 -0.033 0.0005">
+                        <inertial pos="-0.000270832 -0.00914628 0.000738493" quat="0.746786 0.664476 -4.11065e-005 -0.0279675" mass="0.00250622" diaginertia="1.79089e-007 1.75934e-007 7.44543e-008" />
+                        <joint name="right_pinky_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="right_pinky2" type="mesh" mesh="right_pinky2"/>
+                        <site name="right_pinky_medial" pos="0 -0.0117 -0.0047" size=".0075 .01 .006"/>
+                        <body name="right_pinky3" pos="-4.78e-005 -0.0175 0">
+                            <inertial pos="3.85026e-005 -0.0125047 0.000912295" quat="0.516037 0.484447 -0.483043 0.515448" mass="0.00273265" diaginertia="1.19141e-007 1.08629e-007 7.77271e-008" />
+                            <joint name="right_pinky_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="right_pinky3" type="mesh" mesh="right_pinky3"/>
+                            <site name="right_pinky_distal" pos="0 -0.0121 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="right_pinky_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+
+            </body>
+          </body>
+        </body>
+
+        <body name="left_upper_arm" pos="-0.02405 0.18311 0.24350">
+          <joint name="left_shoulder_x" axis="1 0 0" range="-45 180" stiffness="200" damping="20" armature=".02"/>
+          <joint name="left_shoulder_y" axis="0 1 0" range="-180 60" stiffness="200" damping="20" armature=".02"/>
+          <joint name="left_shoulder_z" axis="0 0 1"  range="-90 90" stiffness="200" damping="20" armature=".02"/>
+          <geom name="left_upper_arm" fromto="0 0 -0.05 0 0 -0.23" size="0.045" density="982"/>
+          <site name="left_upper_arm" class="touch" pos="0 0 -0.14" size="0.046 0.1" zaxis="0 0 1"/>
+
+          <body name="left_lower_arm" pos="0 0 -0.274788" axisangle="0 0 1 180">
+            <joint name="left_elbow" axis="0 1 0" range="0 160" stiffness="150" damping="15" armature=".015"/>
+            <geom name="left_lower_arm" fromto="0 0 -0.0525 0 0 -0.1875" size="0.04" density="1056"/>
+            <site name="left_lower_arm" class="touch" pos="0 0 -0.1" size="0.041 0.0685" zaxis="0 0 1"/>
+
+            <!-- ======= left_palm  ======= -->
+            <body childclass="MPL" name="left_palm" pos="0 0 -0.24" axisangle="1 0 0 90">
+              <inertial pos="0.0217876 -0.0376147 0.00276997" quat="0.36373 1.523094 -.3585561 1.66783" mass="0.119867" diaginertia="0.000123088 0.000100082 6.89467e-005" /> 
+              <geom name="left_palm" type="mesh" mesh="left_palm" pos="-0.022 0 0"/>
+              <!-- <joint name="left_wrist_FLEX" damping="0.4" type="hinge" pos="0 0 0" axis="1 0 0" range="-60 60"/> -->
+              <joint name="left_wrist_FLEX" damping="0.4" type="hinge" pos="0 0 0" axis="1 0 0" range="-90 90"/>
+              <joint name="left_wrist_PRO" type="hinge" damping="0.4" pos="0 0 0" axis="0 1 0" range="-90 90"/>
+              <!-- <joint name="left_wrist_UDEV" damping="0.4" type="hinge" pos="0 0 0" axis="0 0 1" range="-45 15"/> -->
+              <joint name="left_wrist_UDEV" damping="0.4" type="hinge" pos="0 0 0" axis="0 0 -1" range="-45 15"/>
+              <site name="left_palm_left_thumb" pos="0.0052 -0.0438 -0.0182" size=".017 .03 .01"/>
+              <site name="left_palm_left_pinky" pos="0.0358 -0.0401 -0.0183" size=".017 .03 .01"/>
+              <site name="left_palm_side" pos="0.0604 -0.0329 -0.0048" size=".01 .03 .015"/>
+              <site name="left_palm_back" pos="0.0246 -0.0446 0.018" size=".03 .035 .015"/>
+
+              <!-- ======= left_thumb ======= -->
+              <body name="left_thumb0" pos="-0.03035752 -0.0206978 -0.010093" quat="0.990237 -0.0412644 0.0209178 0.13149">
+                <inertial pos="-0.00863339 -0.000156884 -0.000945846" quat="0.408795 0.551643 0.541079 0.485602" mass="0.00336696" diaginertia="4.50769e-007 4.48758e-007 2.35017e-007" />
+                <!-- <joint name="left_thumb_ABD" type="hinge" pos="0 0 0" axis="0 -1 0" range="0 120"/> -->
+                <joint name="left_thumb_ABD" type="hinge" pos="0 0 0" axis="0 -1 0" range="-30 120"/>
+                <geom name="left_thumb0" type="mesh" mesh="left_thumb0"/>
+                <body name="left_thumb1" pos="-0.0209172 -0.00084 0.0014476">
+                    <inertial pos="-0.019024 0.000361131 -0.000186763" quat="0.5208 0.469572 0.484571 0.522934" mass="0.00596213" diaginertia="9.88001e-007 9.45125e-007 5.32989e-007" />
+                    <joint name="left_thumb_MCP" type="hinge" pos="0 0 0" axis="0 0 1" range="0 60"/>
+                    <geom name="left_thumb1" type="mesh" mesh="left_thumb1"/>
+                    <site name="left_thumb_proximal" pos="-0.0173 -0.008 0.0009" size=".015 .0075 .01"/>
+                    <body name="left_thumb2" pos="-0.0335 0 -0.0007426">
+                        <inertial pos="-0.0188965 0.000375725 0.00065381" quat="0.502274 0.484638 0.475673 0.535333" mass="0.00599792" diaginertia="9.96692e-007 9.64948e-007 5.14416e-007" />
+                        <joint name="left_thumb_PIP" type="hinge" pos="0 0 0" axis="0 0 1" range="0 60"/>
+                        <geom name="left_thumb2" type="mesh" mesh="left_thumb2"/>
+                        <site name="left_thumb_medial" pos="-0.0182 -0.008 0.0015" size=".015 .0075 .01"/>
+                        <body name="left_thumb3" pos="-0.0335 0 0.0010854">
+                            <inertial pos="-0.0188965 0.000375725 0.00065381" quat="0.502274 0.484638 0.475673 0.535333" mass="0.00599792" diaginertia="9.96692e-007 9.64948e-007 5.14416e-007" />
+                            <joint name="left_thumb_DIP" type="hinge" pos="0 0 0" axis="0 0 1" range="-47 73"/>
+                            <geom name="left_thumb3" type="mesh" mesh="left_thumb3"/>
+                            <site name="left_thumb_distal" pos="-0.0156 -0.007 0.0003" size=".015 .0075 .01" axisangle="0 0 1 -11.5"/>
+                            <!-- <site class="IMU" name="left_thumb_IMU" pos="-0.0099 -0.00052 0" quat=".5 .5 .5 .5" size=".003 .003 .003"/> -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+              
+              <!-- ======= left_index ======= -->
+              <body name="left_index0" pos="-0.03186485 -0.0658 0.00101221" quat="0.996195 0 -0.0871557 0">
+                <inertial pos="0.000142572 -0.00548494 0.000206145" quat="0.699132 0.714861 -0.000723869 0.013694" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+                <joint name="left_index_ABD" type="hinge" pos="0 0 0" axis="0 0 -1" range="0 20"/>
+                <geom name="left_index0" type="mesh" mesh="left_index0"/>
+                <body name="left_index1" pos="-6.26e-005 -0.018 0">
+                    <inertial pos="-0.000406487 -0.0213125 0.000655609" quat="0.698452 0.715642 -0.00415384 0.0023049" mass="0.00478235" diaginertia="8.18599e-007 7.95693e-007 3.06254e-007" />
+                    <joint name="left_index_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="left_index1" type="mesh" mesh="left_index1"/>
+                    <site name="left_index_proximal" pos="0 -0.0235 -0.007" size=".009 .015 .0075"/>
+                    <body name="left_index2" pos="-0.001086 -0.0435 0.0005">
+                        <inertial pos="0.000841462 -0.012689 0.000572665" quat="0.734882 0.677481 -0.028511 0.0124827" mass="0.00344764" diaginertia="3.63962e-007 3.59059e-007 1.05304e-007" />
+                        <joint name="left_index_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="left_index2" type="mesh" mesh="left_index2"/>
+                        <site name="left_index_medial" pos="0 -0.009 -0.0047" size=".0075 .01 .006"/>
+                        <body name="left_index3" pos="0.000635 -0.0245 0">
+                            <inertial pos="-4.32004e-005 -0.0125318 0.000903476" quat="0.516251 0.4829 -0.483241 0.516498" mass="0.00274415" diaginertia="1.19635e-007 1.09202e-007 7.77873e-008" />
+                            <joint name="left_index_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="left_index3" type="mesh" mesh="left_index3"/>
+                            <site name="left_index_distal" pos="0 -0.0132 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="left_index_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+
+              <!-- ======= left_middle ======= -->
+              <body name="left_middle0" pos="-0.010814 -0.0779014 0.00544608" quat="3.14 -0.0436194 0 0">
+                <inertial pos="0.000142567 -0.00548493 0.000206162" quat="0.699131 0.714862 -0.000723874 0.013694" mass="0.00295579" diaginertia="4.22461e-007 4.02281e-007 1.93868e-007" />
+                <!--<joint name="left_middle0" type="hinge" pos="0 0 0" range="-0.345 0" axis="0 0 -1" />-->
+                <geom name="left_middle0" type="mesh" mesh="left_middle0"/>
+                <body name="left_middle1" pos="-6.26e-005 -0.018 0">
+                    <inertial pos="-0.000406411 -0.0213125 0.00065565" quat="0.698451 0.715642 -0.00415503 0.00230486" mass="0.00478229" diaginertia="8.18595e-007 7.9569e-007 3.06253e-007" />
+                    <joint name="left_middle_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="left_middle1" type="mesh" mesh="left_middle1"/>
+                    <site name="left_middle_proximal" pos="0 -0.025 -0.007" size=".009 .015 .0075"/>
+                    <body name="left_middle2" pos="-0.001086 -0.0435 0.0005">
+                        <inertial pos="0.000841444 -0.012689 0.00057266" quat="0.734883 0.677482 -0.0284727 0.0124412" mass="0.00344765" diaginertia="3.63962e-007 3.5906e-007 1.05304e-007" />
+                        <joint name="left_middle_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="left_middle2" type="mesh" mesh="left_middle2"/>
+                        <site name="left_middle_medial" pos="0 -0.0146 -0.0047" size=".0075 .01 .006"/>
+                        <body name="left_middle3" pos="0.000635 -0.0245 0">
+                            <inertial pos="-4.31236e-005 -0.0125318 0.000903446" quat="0.516263 0.482913 -0.483228 0.516487" mass="0.00274417" diaginertia="1.19635e-007 1.09202e-007 7.77884e-008" />
+                            <joint name="left_middle_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="left_middle3" type="mesh" mesh="left_middle3"/>
+                            <site name="left_middle_distal" pos="0 -0.0129 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="left_middle_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/>  -->
+                        </body>
+                    </body>
+                </body>
+              </body>
+            
+              <!-- ======= left_ring ======= -->
+              <body name="left_ring0" pos="0.0134928 -0.0666999 0.00151221" quat="0.996195 0 0.0871557 0">
+                <inertial pos="0.000142559 -0.00548494 0.000206147" quat="0.699132 0.714861 -0.000720946 0.013691" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+                <joint name="left_ring_ABD" type="hinge" pos="0 0 0" axis="0 0 1" range="0 20"/>
+                <geom name="left_ring0" type="mesh" mesh="left_ring0"/>
+                <body name="left_ring1" pos="-6.26e-005 -0.018 0">
+                    <inertial pos="-0.000406447 -0.0213125 0.00065563" quat="0.698451 0.715642 -0.00415675 0.00230715" mass="0.00478232" diaginertia="8.18597e-007 7.95692e-007 3.06254e-007" />
+                    <joint name="left_ring_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                    <geom name="left_ring1" type="mesh" mesh="left_ring1"/>
+                    <site name="left_ring_proximal" pos="0 -0.0259 -0.007" size=".009 .015 .0075"/>
+                    <body name="left_ring2" pos="-0.001086 -0.0435 0.0005">
+                        <inertial pos="0.000841518 -0.012689 0.000572674" quat="0.73488 0.677478 -0.0285773 0.0125557" mass="0.00344767" diaginertia="3.63963e-007 3.59061e-007 1.05305e-007" />
+                        <joint name="left_ring_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                        <geom name="left_ring2" type="mesh" mesh="left_ring2"/>
+                        <site name="left_ring_medial" pos="0 -0.0137 -0.0047" size=".0075 .01 .006"/>
+                        <body name="left_ring3" pos="0.000635 -0.0245 0">
+                            <inertial pos="-4.31973e-005 -0.0125318 0.000903457" quat="0.516255 0.482902 -0.483238 0.516495" mass="0.00274416" diaginertia="1.19635e-007 1.09202e-007 7.77877e-008" />
+                            <joint name="left_ring_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                            <geom name="left_ring3" type="mesh" mesh="left_ring3"/>
+                            <site name="left_ring_distal" pos="0 -0.0117 -0.0038" size=".0075 .01 .006"/>
+                            <!-- <site class="IMU" name="left_ring_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                        </body>
+                    </body>
+                </body>
+             </body>
+
+              <!-- ======= left_little ======= -->
+              <body name="left_pinky0" pos="0.0342459 -0.0554001 -0.00563858" quat="0.996195 0 0.0871557 0">
+              <inertial pos="0.000142559 -0.00538484 0.000206147" quat="0.699132 0.714861 -0.000721037 0.0136911" mass="0.00295579" diaginertia="4.22462e-007 4.02281e-007 1.93868e-007" />
+              <joint name="left_pinky_ABD" type="hinge" pos="0 0 0" axis="0 0 1" range="0 20"/>
+              <geom name="left_pinky0" type="mesh" mesh="left_pinky0"/>
+              <body name="left_pinky1" pos="-6.26e-005 -0.0178999 0">
+                  <inertial pos="-0.000458624 -0.0160478 0.000924735" quat="0.685529 0.72723 0.021252 -0.0270914" mass="0.0034099" diaginertia="4.03391e-007 3.84061e-007 2.19866e-007" />
+                  <joint name="left_pinky_MCP" type="hinge" pos="0 0 0" axis="1 0 0" range="-45 90"/>
+                  <geom name="left_pinky1" type="mesh" mesh="left_pinky1"/>
+                  <site name="left_pinky_proximal" pos="0 -0.021 -0.0066" size=".009 .013 .0075"/>
+                  <body name="left_pinky2" pos="-0.000578 -0.033 0.0005">
+                      <inertial pos="0.000270832 -0.00914628 0.000738493" quat="0.746786 0.664476 -4.11065e-005 -0.0279675" mass="0.00250622" diaginertia="1.79089e-007 1.75934e-007 7.44543e-008" />
+                      <joint name="left_pinky_PIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 99"/>
+                      <geom name="left_pinky2" type="mesh" mesh="left_pinky2"/>
+                      <site name="left_pinky_medial" pos="0 -0.0117 -0.0047" size=".0075 .01 .006"/>
+                      <body name="left_pinky3" pos="4.78e-005 -0.0175 0">
+                          <inertial pos="-3.85026e-005 -0.0125047 0.000912295" quat="0.516037 0.484447 -0.483043 0.515448" mass="0.00273265" diaginertia="1.19141e-007 1.08629e-007 7.77271e-008" />
+                          <joint name="left_pinky_DIP" type="hinge" pos="0 0 0" axis="1 0 0" range="0 79"/>
+                          <geom name="left_pinky3" type="mesh" mesh="left_pinky3"/>
+                          <site name="left_pinky_distal" pos="0 -0.0121 -0.0038" size=".0075 .01 .006"/>
+                          <!-- <site class="IMU" name="left_pinky_IMU" pos="0 -0.0093 0.00063" quat=".5 .5 -.5 .5" size=".003 .003 .003"/> -->
+                      </body>
+                  </body>
+                </body>
+              </body>
+
+
+            </body>
+
+          </body>
+        </body>
+      </body>
+
+      <body name="right_thigh" pos="0 -0.084887 0">
+        <site name="right_hip" class="force-torque"/>
+        <joint name="right_hip_x" axis="1 0 0" range="-60 15" stiffness="300" damping="30" armature=".02"/>
+        <joint name="right_hip_y" axis="0 1 0" range="-140 60" stiffness="300" damping="30" armature=".02"/>
+        <joint name="right_hip_z" axis="0 0 1" range="-60 35" stiffness="300" damping="30" armature=".02"/>
+        <geom name="right_thigh" fromto="0 0 -0.06 0 0 -0.36" size="0.055" density="1269"/>
+        <site name="right_thigh" class="touch" pos="0 0 -0.21" size="0.056 0.301" zaxis="0 0 -1"/>
+
+        <body name="right_shin" pos="0 0 -0.421546">
+          <site name="right_knee" class="force-torque" pos="0 0 0"/>
+          <joint name="right_knee" pos="0 0 0" axis="0 1 0" range="0 160" stiffness="300" damping="30" armature=".02"/>
+          <geom name="right_shin" fromto="0 0 -0.045 0 0 -0.355"  size=".05" density="1014"/>
+          <site name="right_shin" class="touch" pos="0 0 -0.2" size="0.051 0.156" zaxis="0 0 -1"/>
+
+          <body name="right_foot" pos="0 0 -0.409870">
+            <site name="right_ankle" class="force-torque"/>
+            <joint name="right_ankle_x" pos="0 0 0" axis="1 0 0" range="-30 30" stiffness="200" damping="20" armature=".01"/>
+            <joint name="right_ankle_y" pos="0 0 0" axis="0 1 0" range="-55 55" stiffness="200" damping="20" armature=".01"/>
+            <joint name="right_ankle_z" pos="0 0 0" axis="0 0 1" range="-40 40" stiffness="200" damping="20" armature=".01"/>
+            <geom name="right_foot" type="box" pos="0.045 0 -0.0225" size="0.0885 0.045 0.0275" density="1141"/>
+            <site name="right_foot" class="touch" type="box" pos="0.045 0 -0.0225" size="0.0895 0.055 0.0285"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="left_thigh" pos="0 0.084887 0">
+        <site name="left_hip" class="force-torque"/>
+        <joint name="left_hip_x" axis="1 0 0" range="-15 60" stiffness="300" damping="30" armature=".02"/>
+        <joint name="left_hip_y" axis="0 1 0" range="-140 60" stiffness="300" damping="30" armature=".02"/>
+        <joint name="left_hip_z" axis="0 0 1" range="-35 60" stiffness="300" damping="30" armature=".02"/>
+        <geom name="left_thigh" fromto="0 0 -0.06 0 0 -0.36" size=".055" density="1269"/>
+        <site name="left_thigh" class="touch" pos="0 0 -0.21" size="0.056 0.301" zaxis="0 0 -1"/>
+
+        <body name="left_shin" pos="0 0 -0.421546">
+          <site name="left_knee" class="force-torque" pos="0 0 .02"/>
+          <joint name="left_knee" pos="0 0 0" axis="0 1 0" range="0 160" stiffness="300" damping="30" armature=".02"/>
+          <geom name="left_shin" fromto="0 0 -0.045 0 0 -0.355"  size=".05" density="1014"/>
+          <site name="left_shin" class="touch" pos="0 0 -0.2" size="0.051 0.156" zaxis="0 0 -1"/>
+
+          <body name="left_foot" pos="0 0 -0.409870">
+            <site name="left_ankle" class="force-torque"/>
+            <joint name="left_ankle_x" pos="0 0 0" axis="1 0 0" range="-30 30" stiffness="200" damping="20" armature=".01"/>
+            <joint name="left_ankle_y" pos="0 0 0" axis="0 1 0" range="-55 55" stiffness="200" damping="20" armature=".01"/>
+            <joint name="left_ankle_z" pos="0 0 0" axis="0 0 1" range="-40 40" stiffness="200" damping="20" armature=".01"/>
+            <geom name="left_foot" type="box" pos="0.045 0 -0.0225" size="0.0885 0.045 0.0275" density="1141"/>
+            <site name="left_foot" class="touch" type="box" pos="0.045 0 -0.0225" size="0.0895 0.055 0.0285"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+
+  <tendon>
+    <!-- ####### Right Hand ####### -->
+    <!--right_index coupler tendons-->
+    <!-- <fixed name="T_right_index32_cpl" range="0 1"> -->
+    <fixed name="T_right_index32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_index_DIP"  coef="0.00705"/>
+      <joint joint="right_index_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_right_index21_cpl" range="0 1"> -->
+    <fixed name="T_right_index21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_index_PIP"  coef="0.010"/>
+      <joint joint="right_index_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--right_middle coupler tendons-->
+    <!-- <fixed name="T_right_middle32_cpl"> -->
+    <fixed name="T_right_middle32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_middle_DIP"  coef="0.00705"/>
+      <joint joint="right_middle_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_right_middle21_cpl"> -->
+    <fixed name="T_right_middle21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_middle_PIP"  coef="0.010"/>
+      <joint joint="right_middle_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--right_ring coupler tendons-->
+    <!-- <fixed name="T_right_ring32_cpl"> -->
+    <fixed name="T_right_ring32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_ring_DIP"  coef="0.00705"/>
+      <joint joint="right_ring_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_right_ring21_cpl"> -->
+    <fixed name="T_right_ring21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_ring_PIP"  coef="0.010"/>
+      <joint joint="right_ring_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--Little coupler tendons-->
+    <!-- <fixed name="T_right_pinky32_cpl"> -->
+    <fixed name="T_right_pinky32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_pinky_DIP"  coef="0.00705"/>
+      <joint joint="right_pinky_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_right_pinky21_cpl"> -->
+    <fixed name="T_right_pinky21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="right_pinky_PIP"  coef="0.010"/>
+      <joint joint="right_pinky_MCP"  coef="-0.010"/>
+    </fixed>
+    <!-- ####### Right Hand ####### -->
+
+    <!-- ####### Left Hand ####### -->
+    <!--left_index coupler tendons-->
+    <!-- <fixed name="T_left_index32_cpl" range="0 1"> -->
+    <fixed name="T_left_index32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_index_DIP"  coef="0.00705"/>
+      <joint joint="left_index_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_left_index21_cpl" range="0 1"> -->
+    <fixed name="T_left_index21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_index_PIP"  coef="0.010"/>
+      <joint joint="left_index_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--left_middle coupler tendons-->
+    <!-- <fixed name="T_left_middle32_cpl"> -->
+    <fixed name="T_left_middle32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_middle_DIP"  coef="0.00705"/>
+      <joint joint="left_middle_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_left_middle21_cpl"> -->
+    <fixed name="T_left_middle21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_middle_PIP"  coef="0.010"/>
+      <joint joint="left_middle_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--left_ring coupler tendons-->
+    <!-- <fixed name="T_left_ring32_cpl"> -->
+    <fixed name="T_left_ring32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_ring_DIP"  coef="0.00705"/>
+      <joint joint="left_ring_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_left_ring21_cpl"> -->
+    <fixed name="T_left_ring21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_ring_PIP"  coef="0.010"/>
+      <joint joint="left_ring_MCP"  coef="-0.010"/>
+    </fixed>
+    
+    <!--Little coupler tendons-->
+    <!-- <fixed name="T_left_pinky32_cpl"> -->
+    <fixed name="T_left_pinky32_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_pinky_DIP"  coef="0.00705"/>
+      <joint joint="left_pinky_PIP"  coef="-0.00805"/>
+    </fixed>
+    <!-- <fixed name="T_left_pinky21_cpl"> -->
+    <fixed name="T_left_pinky21_cpl" limited="true" range="-0.001 0.001">
+      <joint joint="left_pinky_PIP"  coef="0.010"/>
+      <joint joint="left_pinky_MCP"  coef="-0.010"/>
+    </fixed>
+    <!-- ####### Left Hand ####### -->
+    
+  </tendon>
+
+
+  <equality>
+    <!-- <weld body1="mocap" body2="pelvis" solref="0.01 1" solimp=".9 .9 0.01"/> -->
+
+    <!-- DIP-PIP-MCP Couplings -->
+    <!-- <tendon name="E_right_index32_cpl" 	tendon1="T_right_index32_cpl"/>
+    <tendon name="E_right_index21_cpl" 	tendon1="T_right_index21_cpl"/>
+    <tendon name="E_right_middle32_cpl" 	tendon1="T_right_middle32_cpl"/>
+    <tendon name="E_right_middle21_cpl" 	tendon1="T_right_middle21_cpl"/>
+    <tendon name="E_right_ring32_cpl" 	tendon1="T_right_ring32_cpl"/>
+    <tendon name="E_right_ring21_cpl" 	tendon1="T_right_ring21_cpl"/>
+    <tendon name="E_right_pinky32_cpl" 	tendon1="T_right_pinky32_cpl"/>
+    <tendon name="E_right_pinky21_cpl" 	tendon1="T_right_pinky21_cpl"/> -->
+    
+    <!-- AD-AB Coupling -->
+    <!-- <joint name="right_ring_right_pinky_cpl" joint1="right_ring_ABD" joint2="right_pinky_ABD" polycoef="0 0.5 0 0 0"/> -->
+
+    <!-- DIP-PIP-MCP Couplings -->
+    <!-- <tendon name="E_left_index32_cpl" 	tendon1="T_left_index32_cpl"/>
+    <tendon name="E_left_index21_cpl" 	tendon1="T_left_index21_cpl"/>
+    <tendon name="E_left_middle32_cpl" 	tendon1="T_left_middle32_cpl"/>
+    <tendon name="E_left_middle21_cpl" 	tendon1="T_left_middle21_cpl"/>
+    <tendon name="E_left_ring32_cpl" 	tendon1="T_left_ring32_cpl"/>
+    <tendon name="E_left_ring21_cpl" 	tendon1="T_left_ring21_cpl"/>
+    <tendon name="E_left_pinky32_cpl" 	tendon1="T_left_pinky32_cpl"/>
+    <tendon name="E_left_pinky21_cpl" 	tendon1="T_left_pinky21_cpl"/>
+     -->
+    <!-- AD-AB Coupling -->
+    <!-- <joint name="left_ring_left_pinky_cpl" joint1="left_ring_ABD" joint2="left_pinky_ABD" polycoef="0 0.5 0 0 0"/> -->
+  </equality>
+
+  <actuator>
+    <motor name='abdomen_x'       gear='125' joint='abdomen_x'/>
+    <motor name='abdomen_y'       gear='125' joint='abdomen_y'/>
+    <motor name='abdomen_z'       gear='125' joint='abdomen_z'/>
+    <motor name='neck_x'          gear='20' joint='neck_x'/>
+    <motor name='neck_y'          gear='20' joint='neck_y'/>
+    <motor name='neck_z'          gear='20' joint='neck_z'/>
+    <motor name='right_shoulder_x' gear='70' joint='right_shoulder_x'/>
+    <motor name='right_shoulder_y' gear='70' joint='right_shoulder_y'/>
+    <motor name='right_shoulder_z' gear='70' joint='right_shoulder_z'/>
+    <motor name='right_elbow'     gear='60' joint='right_elbow'/>
+    <motor name='left_shoulder_x'  gear='70' joint='left_shoulder_x'/>
+    <motor name='left_shoulder_y'  gear='70' joint='left_shoulder_y'/>
+    <motor name='left_shoulder_z'  gear='70' joint='left_shoulder_z'/>
+    <motor name='left_elbow'      gear='60' joint='left_elbow'/>
+    <motor name='right_hip_x'     gear='125' joint='right_hip_x'/>
+    <motor name='right_hip_y'     gear='125' joint='right_hip_y'/>
+    <motor name='right_hip_z'     gear='125' joint='right_hip_z'/>
+    <motor name='right_knee'      gear='100' joint='right_knee'/>
+    <motor name='right_ankle_x'   gear='50' joint='right_ankle_x'/>
+    <motor name='right_ankle_y'   gear='50' joint='right_ankle_y'/>
+    <motor name='right_ankle_z'   gear='50' joint='right_ankle_z'/>
+    <motor name='left_hip_x'      gear='125' joint='left_hip_x'/>
+    <motor name='left_hip_y'      gear='125' joint='left_hip_y'/>
+    <motor name='left_hip_z'      gear='125' joint='left_hip_z'/>
+    <motor name='left_knee'       gear='100' joint='left_knee'/>
+    <motor name='left_ankle_x'    gear='50' joint='left_ankle_x'/>
+    <motor name='left_ankle_y'    gear='50' joint='left_ankle_y'/>
+    <motor name='left_ankle_z'    gear='50' joint='left_ankle_z'/>
+
+    <!-- right_wrist -->
+    <!-- <position name="A_right_wrist_FLEX" class="MPL" joint="right_wrist_FLEX" ctrlrange="-1 1"/> -->
+    <position name="A_right_wrist_FLEX" class="MPL" joint="right_wrist_FLEX" ctrlrange="-1.57 1.57"/>
+    <position name="A_right_wrist_PRO"  class="MPL" joint="right_wrist_PRO"  ctrlrange="-1.57 1.57"/>
+    <position name="A_right_wrist_UDEV" class="MPL" joint="right_wrist_UDEV" ctrlrange="-0.79 0.26"/>
+    <!-- <position name="A_right_wrist_UDEV" class="MPL" joint="right_wrist_UDEV" ctrlrange="-0.26 0.79"/> -->
+
+    <!-- right_thumb -->
+    <!-- <position name="A_right_thumb_ABD"  class="MPL" joint="right_thumb_ABD"  ctrlrange="0 2.1"/> -->
+    <position name="A_right_thumb_ABD"  class="MPL" joint="right_thumb_ABD"  ctrlrange="-0.52 2.1"/>
+    <position name="A_right_thumb_MCP"  class="MPL" joint="right_thumb_MCP"  ctrlrange="0 1.0"/>
+    <position name="A_right_thumb_PIP"  class="MPL" joint="right_thumb_PIP"  ctrlrange="0 1.0"/>
+    <position name="A_right_thumb_DIP"  class="MPL" joint="right_thumb_DIP"  ctrlrange="-0.82 1.3"/>
+  
+    <!-- Fingers -->
+    <position name="A_right_index_ABD"  class="MPL" joint="right_index_ABD"  ctrlrange="0 0.34"/>
+    <!-- <position name="A_right_index_MCP"  class="MPL" joint="right_index_MCP"  ctrlrange="0 1.6"/> -->
+    <position name="A_right_index_MCP"  class="MPL" joint="right_index_MCP"  ctrlrange="-0.79 1.57"/>
+    <!-- <position name="A_right_middle_MCP" class="MPL" joint="right_middle_MCP" ctrlrange="0 1.6"/> -->
+    <position name="A_right_middle_MCP" class="MPL" joint="right_middle_MCP" ctrlrange="-0.79 1.57"/>
+    <!-- <position name="A_right_ring_MCP"   class="MPL" joint="right_ring_MCP" 	 ctrlrange="0 1.6"/> -->
+    <position name="A_right_ring_MCP"   class="MPL" joint="right_ring_MCP" 	 ctrlrange="-0.79 1.57"/>
+    <position name="A_right_pinky_ABD"  class="MPL" joint="right_pinky_ABD"  ctrlrange="0 0.34"/>
+    <!-- <position name="A_right_pinky_MCP"  class="MPL" joint="right_pinky_MCP"  ctrlrange="0 1.6"/> -->
+    <position name="A_right_pinky_MCP"  class="MPL" joint="right_pinky_MCP"  ctrlrange="-0.79 1.57"/>
+
+    <!-- left_wrist -->
+    <!-- <position name="A_left_wrist_FLEX" class="MPL" joint="left_wrist_FLEX" ctrlrange="-1 1"/> -->
+    <position name="A_left_wrist_FLEX" class="MPL" joint="left_wrist_FLEX" ctrlrange="-1.57 1.57"/>
+    <position name="A_left_wrist_PRO"  class="MPL" joint="left_wrist_PRO"  ctrlrange="-1.57 1.57"/>
+    <position name="A_left_wrist_UDEV" class="MPL" joint="left_wrist_UDEV" ctrlrange="-0.79 0.26"/>
+    <!-- <position name="A_left_wrist_UDEV" class="MPL" joint="left_wrist_UDEV" ctrlrange="-0.26 0.79"/> -->
+
+    
+    <!-- left_thumb -->
+    <!-- <position name="A_left_thumb_ABD"  class="MPL" joint="left_thumb_ABD"  ctrlrange="0 2.1"/> -->
+    <position name="A_left_thumb_ABD"  class="MPL" joint="left_thumb_ABD"  ctrlrange="-0.52 2.1"/>
+    <position name="A_left_thumb_MCP"  class="MPL" joint="left_thumb_MCP"  ctrlrange="0 1.0"/>
+    <position name="A_left_thumb_PIP"  class="MPL" joint="left_thumb_PIP"  ctrlrange="0 1.0"/>
+    <position name="A_left_thumb_DIP"  class="MPL" joint="left_thumb_DIP"  ctrlrange="-0.82 1.3"/>
+        
+    <!-- Fingers -->
+    <position name="A_left_index_ABD"  class="MPL" joint="left_index_ABD"  ctrlrange="0 0.34"/>
+    <!-- <position name="A_left_index_MCP"  class="MPL" joint="left_index_MCP"  ctrlrange="0 1.6"/> -->
+    <position name="A_left_index_MCP"  class="MPL" joint="left_index_MCP"  ctrlrange="-0.79 1.57"/>
+    <!-- <position name="A_left_middle_MCP" class="MPL" joint="left_middle_MCP" ctrlrange="0 1.6"/> -->
+    <position name="A_left_middle_MCP" class="MPL" joint="left_middle_MCP" ctrlrange="-0.79 1.57"/>
+    <!-- <position name="A_left_ring_MCP"   class="MPL" joint="left_ring_MCP" 	 ctrlrange="0 1.6"/> -->
+    <position name="A_left_ring_MCP"   class="MPL" joint="left_ring_MCP" 	 ctrlrange="-0.79 1.57"/>
+    <position name="A_left_pinky_ABD"  class="MPL" joint="left_pinky_ABD"  ctrlrange="0 0.34"/>
+    <!-- <position name="A_left_pinky_MCP"  class="MPL" joint="left_pinky_MCP"  ctrlrange="0 1.6"/> -->
+    <position name="A_left_pinky_MCP"  class="MPL" joint="left_pinky_MCP"  ctrlrange="-0.79 1.57"/>
+  </actuator>
+
+  <sensor>
+    <subtreelinvel name="pelvis_subtreelinvel" body="pelvis"/>
+    <accelerometer name="root_accel"    site="root"/>
+    <velocimeter name="root_vel"        site="root"/>
+    <gyro name="root_gyro"              site="root"/>
+
+    <force name="left_ankle_force"       site="left_ankle"/>
+    <force name="right_ankle_force"      site="right_ankle"/>
+    <force name="left_knee_force"        site="left_knee"/>
+    <force name="right_knee_force"       site="right_knee"/>
+    <force name="left_hip_force"         site="left_hip"/>
+    <force name="right_hip_force"        site="right_hip"/>
+
+    <torque name="left_ankle_torque"     site="left_ankle"/>
+    <torque name="right_ankle_torque"    site="right_ankle"/>
+    <torque name="left_knee_torque"      site="left_knee"/>
+    <torque name="right_knee_torque"     site="right_knee"/>
+    <torque name="left_hip_torque"       site="left_hip"/>
+    <torque name="right_hip_torque"      site="right_hip"/>
+
+    <touch name="pelvis_touch"           site="pelvis"/>
+    <touch name="upper_waist_touch"      site="upper_waist"/>
+    <touch name="torso_touch"            site="torso"/>
+    <touch name="head_touch"             site="head"/>
+    <touch name="right_upper_arm_touch"  site="right_upper_arm"/>
+    <touch name="right_lower_arm_touch"  site="right_lower_arm"/>
+    <!-- <touch name="right_hand_touch"       site="right_hand"/> -->
+
+    <!-- Right Hand -->
+    <touch name="S_right_palm_right_thumb" 		site="right_palm_right_thumb"/>
+    <touch name="S_right_palm_right_pinky" 		site="right_palm_right_pinky"/>
+    <touch name="S_right_palm_side" 		site="right_palm_side"/>
+    <touch name="S_right_palm_back" 		site="right_palm_back"/>
+    <touch name="S_right_thumb_proximal" 	site="right_thumb_proximal"/>
+    <touch name="S_right_thumb_medial" 	site="right_thumb_medial"/>
+    <touch name="S_right_thumb_distal" 	site="right_thumb_distal"/>
+    <touch name="S_right_index_proximal" 	site="right_index_proximal"/>
+    <touch name="S_right_index_medial" 	site="right_index_medial"/>
+    <touch name="S_right_index_distal" 	site="right_index_distal"/>
+    <touch name="S_right_middle_proximal" site="right_middle_proximal"/>
+    <touch name="S_right_middle_medial" 	site="right_middle_medial"/>
+    <touch name="S_right_middle_distal" 	site="right_middle_distal"/>
+    <touch name="S_right_ring_proximal" 	site="right_ring_proximal"/>
+    <touch name="S_right_ring_medial" 	site="right_ring_medial"/>
+    <touch name="S_right_ring_distal" 	site="right_ring_distal"/>
+    <touch name="S_right_pinky_proximal" 	site="right_pinky_proximal"/>
+    <touch name="S_right_pinky_medial" 	site="right_pinky_medial"/>
+    <touch name="S_right_pinky_distal" 	site="right_pinky_distal"/>
+
+
+    <touch name="left_upper_arm_touch"   site="left_upper_arm"/>
+    <touch name="left_lower_arm_touch"   site="left_lower_arm"/>
+    <!-- <touch name="left_hand_touch"        site="left_hand"/> -->
+
+    <!-- Left Hand -->
+    <touch name="S_left_palm_left_thumb" 		site="left_palm_left_thumb"/>
+    <touch name="S_left_palm_left_pinky" 		site="left_palm_left_pinky"/>
+    <touch name="S_left_palm_side" 		site="left_palm_side"/>
+    <touch name="S_left_palm_back" 		site="left_palm_back"/>
+    <touch name="S_left_thumb_proximal" 	site="left_thumb_proximal"/>
+    <touch name="S_left_thumb_medial" 	site="left_thumb_medial"/>
+    <touch name="S_left_thumb_distal" 	site="left_thumb_distal"/>
+    <touch name="S_left_index_proximal" 	site="left_index_proximal"/>
+    <touch name="S_left_index_medial" 	site="left_index_medial"/>
+    <touch name="S_left_index_distal" 	site="left_index_distal"/>
+    <touch name="S_left_middle_proximal" site="left_middle_proximal"/>
+    <touch name="S_left_middle_medial" 	site="left_middle_medial"/>
+    <touch name="S_left_middle_distal" 	site="left_middle_distal"/>
+    <touch name="S_left_ring_proximal" 	site="left_ring_proximal"/>
+    <touch name="S_left_ring_medial" 	site="left_ring_medial"/>
+    <touch name="S_left_ring_distal" 	site="left_ring_distal"/>
+    <touch name="S_left_pinky_proximal" 	site="left_pinky_proximal"/>
+    <touch name="S_left_pinky_medial" 	site="left_pinky_medial"/>
+    <touch name="S_left_pinky_distal" 	site="left_pinky_distal"/>
+
+
+    <touch name="right_thigh_touch"      site="right_thigh"/>
+    <touch name="right_shin_touch"       site="right_shin"/>
+    <touch name="right_foot_touch"       site="right_foot"/>
+    <touch name="left_thigh_touch"       site="left_thigh"/>
+    <touch name="left_shin_touch"        site="left_shin"/>
+    <touch name="left_foot_touch"        site="left_foot"/>
+  </sensor>
+
+</mujoco>

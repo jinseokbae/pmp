@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot name="metal_pole">
+
+  <link name="slider">
+    <visual>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="4" radius="0.02" />
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="4" radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+
+</robot>

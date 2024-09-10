@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<robot name="stair">
+    <link name="stair1">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="3.0 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="3.0 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="stair2">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.7 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.7 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="stair1_to_stair2" type="fixed">
+        <parent link="stair1" />
+        <child link="stair2" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.2" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="stair3">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.4 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.4 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="stair2_to_stair3" type="fixed">
+        <parent link="stair2" />
+        <child link="stair3" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.2" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="stair4">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.1 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="2.1 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="stair3_to_stair4" type="fixed">
+        <parent link="stair3" />
+        <child link="stair4" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.2" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="stair5">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="1.8 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="1.8 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="stair4_to_stair5" type="fixed">
+        <parent link="stair4" />
+        <child link="stair5" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.2" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <link name="stair6">
+        <contact>
+            <lateral_friction value="0.5" />
+            <rolling_friction value="0.0" />
+            <contact_cfm value="0.0" />
+            <contact_erp value="1.0" />
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="30" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="1.5 6.0 0.2" />
+            </geometry>
+            <material name="slider_mat">
+                <color rgba="1.0 1.0 1.0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="1.5 6.0 0.2" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="stair5_to_stair6" type="fixed">
+        <parent link="stair5" />
+        <child link="stair6" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.2" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+</robot>

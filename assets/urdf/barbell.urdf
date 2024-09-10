@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot name="barbell">
+  <link name="bar">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="1" />
+    </inertial>
+    <visual>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="1.2" radius="0.02" />
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.6 0.6 0.6 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="1.2" radius="0.022" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="disk1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="5" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.05" radius="0.2" />
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.05" radius="0.2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bar_to_disk1" type="fixed">
+    <parent link="bar" />
+    <child link="disk1" />
+    <origin rpy="0 0 0" xyz="0 0 -0.6" />
+  </joint>
+  <link name="disk2">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="5" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.05" radius="0.2" />
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.05" radius="0.2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="bar_to_disk2" type="fixed">
+    <parent link="bar" />
+    <child link="disk2" />
+    <origin rpy="0 0 0" xyz="0 0 0.6" />
+  </joint>
+
+</robot>

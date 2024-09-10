@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<robot name="pole_box">
+
+  <link name="box">
+    <contact>
+        <lateral_friction value="0.5"/>
+        <rolling_friction value="0.0"/>
+        <contact_cfm value="0.0"/>
+        <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="30"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+        <box size="1.0 1.0 0.8"/>
+        </geometry>
+        <material name="slider_mat">
+        <color rgba="1.0 1.0 1.0 1"/>
+        </material>
+    </visual>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+        <box size="1.0 1.0 0.8"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <link name="link_pole">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="1"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="box_to_link_pole" type="fixed">
+    <parent link="box"/>
+    <child link="link_pole"/>
+    <origin rpy="0 1.5708 0" xyz="-0.65 0 0.33"/>
+  </joint>
+
+  <link name="handle_pole">
+    <contact>
+      <lateral_friction value="0.5"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="1"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="link_pole_to_handle_pole" type="fixed">
+    <parent link="link_pole"/>
+    <child link="handle_pole"/>
+    <origin rpy="1.5708 0 0" xyz="0 0 -0.15"/>
+  </joint>
+
+  <link name="right_front_wheel">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="5"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="box_to_right_front_wheel" type="continuous">
+    <parent link="box"/>
+    <child link="right_front_wheel"/>
+    <origin rpy="1.5708 0 0" xyz="-0.4 0.56 -0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="right_rear_wheel">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="5"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="box_to_right_rear_wheel" type="continuous">
+    <parent link="box"/>
+    <child link="right_rear_wheel"/>
+    <origin rpy="1.5708 0 0" xyz="0.4 0.56 -0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="left_front_wheel">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="5"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="box_to_left_front_wheel" type="continuous">
+    <parent link="box"/>
+    <child link="left_front_wheel"/>
+    <origin rpy="1.5708 0 0" xyz="-0.4 -0.56 -0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="left_rear_wheel">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="5"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/> -->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="slider_mat">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <box size="0.03 8 0.03"/>-->
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="box_to_left_rear_wheel" type="continuous">
+    <parent link="box"/>
+    <child link="left_rear_wheel"/>
+    <origin rpy="1.5708 0 0" xyz="0.4 -0.56 -0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+</robot>

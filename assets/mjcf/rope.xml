@@ -1,0 +1,344 @@
+<mujoco model="rope">
+  <statistic extent="2" center="0 0 1"/>
+  
+  <!-- <option timestep="0.00555"/> -->
+  
+  <default>
+    <motor ctrlrange="-1 1" ctrllimited="true"/>
+    <default class="body">
+      <geom type="capsule" condim="1" friction="1.0 0.05 0.05" solimp=".9 .99 .003" solref=".015 1"/>
+      <joint type="hinge" damping="0.1" stiffness="5" armature=".007" limited="false" solimplimit="0 .99 .01"/>
+      <site size=".04" group="3"/>
+      <default class="force-torque">
+        <site type="box" size=".01 .01 .02" rgba="1 0 0 1" />
+      </default>
+      <default class="touch">
+        <site type="capsule" rgba="0 0 1 .3"/>
+      </default>
+    </default>
+  </default>
+  
+  <contact>
+    <exclude body1="bar0" body2="bar1"/>
+    <exclude body1="bar1" body2="bar2"/>
+    <exclude body1="bar2" body2="bar3"/>
+    <exclude body1="bar3" body2="bar4"/>
+    <exclude body1="bar4" body2="bar5"/>
+    <exclude body1="bar5" body2="bar6"/>
+    <exclude body1="bar6" body2="bar7"/>
+    <exclude body1="bar7" body2="bar8"/>
+    <exclude body1="bar8" body2="bar9"/>
+    <exclude body1="bar9" body2="bar10"/>
+    <exclude body1="bar10" body2="bar11"/>
+    <exclude body1="bar11" body2="bar12"/>
+    <exclude body1="bar12" body2="bar13"/>
+    <exclude body1="bar13" body2="bar14"/>
+    <exclude body1="bar14" body2="bar15"/>
+    <exclude body1="bar15" body2="bar16"/>
+    <exclude body1="bar16" body2="bar17"/>
+    <exclude body1="bar17" body2="bar18"/>
+    <exclude body1="bar18" body2="bar19"/>
+    <exclude body1="bar19" body2="bar20"/>
+    <exclude body1="bar20" body2="bar21"/>
+    <exclude body1="bar21" body2="bar22"/>
+    <exclude body1="bar22" body2="bar23"/>
+    <exclude body1="bar23" body2="bar24"/>
+    <exclude body1="bar24" body2="bar25"/>
+    <exclude body1="bar25" body2="bar26"/>
+    <exclude body1="bar26" body2="bar27"/>
+    <exclude body1="bar27" body2="bar28"/>
+    <exclude body1="bar28" body2="bar29"/>
+  </contact>
+
+  <worldbody>
+    <!-- <body name="mocap" mocap="true" pos="0 -0.35 0.2" axisangle="0 0 1 3.141592">
+      <geom type="box" group="1" size="0.02 0.02 0.02" contype="0" conaffinity="0" rgba=".9 .5 .5 1"/>
+    </body> -->
+
+    <body name="bar0" pos="0 0 0" childclass="body">
+      <freejoint name="root"/>
+      <site name="root" class="force-torque"/>
+      <geom name="bar0_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+      <site name="bar0_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+      <body name="bar1" pos="0 0 -0.205">
+        <joint name="bar1_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+        <joint name="bar1_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+        <geom name="bar1_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+        <site name="bar1_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+        <body name="bar2" pos="0 0 -0.205">
+          <joint name="bar2_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+          <joint name="bar2_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+          <geom name="bar2_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+          <site name="bar2_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+          <body name="bar3" pos="0 0 -0.205">
+            <joint name="bar3_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+            <joint name="bar3_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+            <geom name="bar3_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+            <site name="bar3_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+            <body name="bar4" pos="0 0 -0.205">
+              <joint name="bar4_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+              <joint name="bar4_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+              <geom name="bar4_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+              <site name="bar4_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+              
+              <body name="bar5" pos="0 0 -0.205">
+                <joint name="bar5_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                <joint name="bar5_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                <geom name="bar5_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                <site name="bar5_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                
+                <body name="bar6" pos="0 0 -0.205">
+                  <joint name="bar6_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                  <joint name="bar6_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                  <geom name="bar6_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                  <site name="bar6_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                  
+                  <body name="bar7" pos="0 0 -0.205">
+                    <joint name="bar7_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                    <joint name="bar7_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                    <geom name="bar7_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                    <site name="bar7_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                    
+                    <body name="bar8" pos="0 0 -0.205">
+                      <joint name="bar8_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                      <joint name="bar8_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                      <geom name="bar8_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                      <site name="bar8_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                      <body name="bar9" pos="0 0 -0.205">
+                        <joint name="bar9_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                        <joint name="bar9_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                        <geom name="bar9_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                        <site name="bar9_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                        <body name="bar10" pos="0 0 -0.205">
+                          <joint name="bar10_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                          <joint name="bar10_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                          <geom name="bar10_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                          <site name="bar10_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                          <body name="bar11" pos="0 0 -0.205">
+                            <joint name="bar11_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                            <joint name="bar11_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                            <geom name="bar11_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                            <site name="bar11_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                            <body name="bar12" pos="0 0 -0.205">
+                              <joint name="bar12_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                              <joint name="bar12_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                              <geom name="bar12_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                              <site name="bar12_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                              <body name="bar13" pos="0 0 -0.205">
+                                <joint name="bar13_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                <joint name="bar13_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                <geom name="bar13_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                <site name="bar13_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                <body name="bar14" pos="0 0 -0.205">
+                                  <joint name="bar14_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                  <joint name="bar14_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                  <geom name="bar14_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                  <site name="bar14_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                  <body name="bar15" pos="0 0 -0.205">
+                                    <joint name="bar15_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                    <joint name="bar15_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                    <geom name="bar15_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                    <site name="bar15_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                    <body name="bar16" pos="0 0 -0.205">
+                                      <joint name="bar16_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                      <joint name="bar16_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                      <geom name="bar16_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                      <site name="bar16_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                      <body name="bar17" pos="0 0 -0.205">
+                                        <joint name="bar17_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                        <joint name="bar17_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                        <geom name="bar17_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                        <site name="bar17_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                        <body name="bar18" pos="0 0 -0.205">
+                                          <joint name="bar18_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                          <joint name="bar18_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                          <geom name="bar18_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                          <site name="bar18_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                                          
+                                          <body name="bar19" pos="0 0 -0.205">
+                                            <joint name="bar19_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                            <joint name="bar19_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                            <geom name="bar19_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                            <site name="bar19_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+
+                                            <body name="bar20" pos="0 0 -0.205">
+                                              <joint name="bar20_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                              <joint name="bar20_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                              <geom name="bar20_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                              <site name="bar20_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                                              
+                                              <body name="bar21" pos="0 0 -0.205">
+                                                <joint name="bar21_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                <joint name="bar21_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                <geom name="bar21_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                <site name="bar21_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+    
+                                                <body name="bar22" pos="0 0 -0.205">
+                                                  <joint name="bar22_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                  <joint name="bar22_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                  <geom name="bar22_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                  <site name="bar22_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                                                  
+                                                  <body name="bar23" pos="0 0 -0.205">
+                                                    <joint name="bar23_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                    <joint name="bar23_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                    <geom name="bar23_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                    <site name="bar23_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+        
+                                                    <body name="bar24" pos="0 0 -0.205">
+                                                      <joint name="bar24_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                      <joint name="bar24_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                      <geom name="bar24_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                      <site name="bar24_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+          
+                                                      <body name="bar25" pos="0 0 -0.205">
+                                                        <joint name="bar25_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                        <joint name="bar25_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                        <geom name="bar25_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                        <site name="bar25_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+            
+                                                        <body name="bar26" pos="0 0 -0.205">
+                                                          <joint name="bar26_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                          <joint name="bar26_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                          <geom name="bar26_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                          <site name="bar26_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+              
+                                                          <body name="bar27" pos="0 0 -0.205">
+                                                            <joint name="bar27_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                            <joint name="bar27_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                            <geom name="bar27_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                            <site name="bar27_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                
+                                                            <body name="bar28" pos="0 0 -0.205">
+                                                              <joint name="bar28_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                              <joint name="bar28_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                              <geom name="bar28_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                              <site name="bar28_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                  
+                                                              <body name="bar29" pos="0 0 -0.205">
+                                                                <joint name="bar29_x" axis="1 0 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                                <joint name="bar29_y" axis="0 1 0" range="-180 180" stiffness="50" damping="5" armature="0.1"/>
+                                                                <geom name="bar29_body" fromto="0 0 0 0 0 -0.16" size="0.02" density="10000"/>
+                                                                <site name="bar29_body" class="touch" pos="0 0 -0.1" size="0.02 0.16" zaxis="0 1 0"/>
+                    
+                                                              </body>
+                                                            </body>
+                                                          </body>
+                                                        </body>
+                                                      </body>
+                                                    </body>
+                                                  </body>
+                                                </body>
+                                              </body>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+  </worldbody>
+
+
+  <!-- <equality>
+    <weld body1="mocap" body2="bar0" solref="0.01 1" solimp=".9 .9 0.01"/>
+  </equality> -->
+
+  <actuator>
+    <motor name='bar1_x'       gear='1' joint='bar1_x'/>
+    <motor name='bar1_y'       gear='1' joint='bar1_y'/>
+    <motor name='bar2_x'       gear='1' joint='bar2_x'/>
+    <motor name='bar2_y'       gear='1' joint='bar2_y'/>
+    <motor name='bar3_x'       gear='1' joint='bar3_x'/>
+    <motor name='bar3_y'       gear='1' joint='bar3_y'/>
+    <motor name='bar4_x'       gear='1' joint='bar4_x'/>
+    <motor name='bar4_y'       gear='1' joint='bar4_y'/>
+    <motor name='bar5_x'       gear='1' joint='bar5_x'/>
+    <motor name='bar5_y'       gear='1' joint='bar5_y'/>
+    <motor name='bar6_x'       gear='1' joint='bar6_x'/>
+    <motor name='bar6_y'       gear='1' joint='bar6_y'/>
+    <motor name='bar7_x'       gear='1' joint='bar7_x'/>
+    <motor name='bar7_y'       gear='1' joint='bar7_y'/>
+    <motor name='bar8_x'       gear='1' joint='bar8_x'/>
+    <motor name='bar8_y'       gear='1' joint='bar8_y'/>
+    <motor name='bar9_x'       gear='1' joint='bar9_x'/>
+    <motor name='bar9_y'       gear='1' joint='bar9_y'/>
+    <motor name='bar10_x'       gear='1' joint='bar10_x'/>
+    <motor name='bar10_y'       gear='1' joint='bar10_y'/>
+    <motor name='bar11_x'       gear='1' joint='bar11_x'/>
+    <motor name='bar11_y'       gear='1' joint='bar11_y'/>
+    <motor name='bar12_x'       gear='1' joint='bar12_x'/>
+    <motor name='bar12_y'       gear='1' joint='bar12_y'/>
+    <motor name='bar13_x'       gear='1' joint='bar13_x'/>
+    <motor name='bar13_y'       gear='1' joint='bar13_y'/>
+    <motor name='bar14_x'       gear='1' joint='bar14_x'/>
+    <motor name='bar14_y'       gear='1' joint='bar14_y'/>
+    <motor name='bar15_x'       gear='1' joint='bar15_x'/>
+    <motor name='bar15_y'       gear='1' joint='bar15_y'/>
+    <motor name='bar16_x'       gear='1' joint='bar16_x'/>
+    <motor name='bar16_y'       gear='1' joint='bar16_y'/>
+    <motor name='bar17_x'       gear='1' joint='bar17_x'/>
+    <motor name='bar17_y'       gear='1' joint='bar17_y'/>
+    <motor name='bar18_x'       gear='1' joint='bar18_x'/>
+    <motor name='bar18_y'       gear='1' joint='bar18_y'/>
+    <motor name='bar19_x'       gear='1' joint='bar19_x'/>
+    <motor name='bar19_y'       gear='1' joint='bar19_y'/>
+    <motor name='bar20_x'       gear='1' joint='bar20_x'/>
+    <motor name='bar20_y'       gear='1' joint='bar20_y'/>
+    <motor name='bar21_x'       gear='1' joint='bar21_x'/>
+    <motor name='bar21_y'       gear='1' joint='bar21_y'/>
+    <motor name='bar22_x'       gear='1' joint='bar22_x'/>
+    <motor name='bar22_y'       gear='1' joint='bar22_y'/>
+    <motor name='bar23_x'       gear='1' joint='bar23_x'/>
+    <motor name='bar23_y'       gear='1' joint='bar23_y'/>
+    <motor name='bar24_x'       gear='1' joint='bar24_x'/>
+    <motor name='bar24_y'       gear='1' joint='bar24_y'/>
+    <motor name='bar25_x'       gear='1' joint='bar25_x'/>
+    <motor name='bar25_y'       gear='1' joint='bar25_y'/>
+    <motor name='bar26_x'       gear='1' joint='bar26_x'/>
+    <motor name='bar26_y'       gear='1' joint='bar26_y'/>
+    <motor name='bar27_x'       gear='1' joint='bar27_x'/>
+    <motor name='bar27_y'       gear='1' joint='bar27_y'/>
+    <motor name='bar28_x'       gear='1' joint='bar28_x'/>
+    <motor name='bar28_y'       gear='1' joint='bar28_y'/>
+    <motor name='bar29_x'       gear='1' joint='bar29_x'/>
+    <motor name='bar29_y'       gear='1' joint='bar29_y'/>
+  </actuator>
+
+  <!-- <sensor>
+    <subtreelinvel name="bar0_subtreelinvel" body="bar0"/>
+    <accelerometer name="root_accel"    site="root"/>
+    <velocimeter name="root_vel"        site="root"/>
+    <gyro name="root_gyro"              site="root"/>
+  </sensor> -->
+
+</mujoco>
