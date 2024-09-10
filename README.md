@@ -30,9 +30,7 @@ Official Implementation of "PMP: Learning to Physically Interact with Environmen
 
 
 **Note**) I'm currently focusing on the other projects mainly so this repo will be updated slowly.
-In case you require early access to the full implementation, I can share unofficial versions via e-mail.
-Please contact me via e-mail.
-
+In case you require early access to the full implementation, please contact me through my personal [website](https://jinseokbae.github.io/).
 # Installation
 This code is based on [Isaac Gym Preview 4](https://developer.nvidia.com/isaac-gym).
 Please run installation code and create a conda environment following the instruction in Isaac Gym Preview 4.
