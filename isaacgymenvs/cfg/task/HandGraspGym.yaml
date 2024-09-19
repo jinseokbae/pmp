@@ -1,12 +1,12 @@
 # used to create the object
-name: HandGraspGeneral
+name: HandGraspGym
 
 physics_engine: ${..physics_engine}
 
 # if given, will override the device setting in gym.
 env:
-  testMode: ${resolve_default:False,${...test}}
-  numEnvs: ${resolve_default:1024,${...num_envs}}
+  test: ${resolve_default:False,${...test}}
+  numEnvs: ${resolve_default:2048,${...num_envs}}
   envSpacing: 5
   episodeLength: 60 
   cameraFollow: True # if the camera follows humanoid or not

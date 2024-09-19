@@ -18,7 +18,7 @@ env:
   viewing_targets: ${resolve_default:["whole_body"],${...viewing_targets}}
   target_episodes: ${resolve_default:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],${...target_episodes}}
   output_dir: ${resolve_default:"",${...output_dir}}
-  testMode: ${resolve_default:False,${...test}}
+  test: ${resolve_default:False,${...test}}
   separateDoFMode: ${resolve_default:1,${...separate_dof_mode}}
   numEnvs: ${resolve_default:4096,${...num_envs}}
   envSpacing: 5
