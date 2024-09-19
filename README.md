@@ -1,3 +1,9 @@
+# PMP
+<div style="text-align:center">
+<img src="docs/assets/teaser.png" alt="teaser image"/>
+</div>
+<br/>
+
 Official Implementation of "PMP: Learning to Physically Interact with Environments using Part-wise Motion Priors" (SIGGRAPH 2023) ([paper](https://arxiv.org/abs/2305.03249), [video](https://www.youtube.com/watch?v=WdLGvKdNG-0&t=21s), [talk](https://www.youtube.com/watch?v=WzvFRI5FxRI))
 
 # Status
