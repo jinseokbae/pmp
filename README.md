@@ -62,11 +62,13 @@ Additionally, we share the extracted demonstrations (i.e. pair of state-action) 
 
 You can train a policy from scratch using the following commands:
 ```shell
+cd isaacgymenvs
+
 # train
-python train.py headless=True task=HandGrapGym train=HandOnlyPPO experiment=hand_grasping
+python train.py headless=True task=HandGraspGym train=HandOnlyPPO experiment=hand_grasping
 
 # test - visualize only one agent
-python train.py headless=False test=True num_envs=1 task=HandGrapGym train=HandOnlyPPO checkpoint=pretrained/hand_grasping_weights.pth
+python train.py headless=False test=True num_envs=1 task=HandGraspGym train=HandOnlyPPO checkpoint=pretrained/hand_grasping_weights.pth
 ```
 
 However, please note that this grasping gym is only the example and you can replace this gym with the customized one that satisfies your end goal (e.g. gym to train punch).
